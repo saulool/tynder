@@ -1,0 +1,62 @@
+$white: #fff;
+
+html {
+	min-height: 100%;
+	position: relative;
+}
+
+body {
+	background-color: darken($white, 5%);
+	margin-bottom: 60px;
+}
+
+.app {
+	.navbar {
+		background-color: $white;
+		border-bottom: 1px solid #e0e0e0;
+		margin: 0px 0px 20px;
+		padding: 10px;
+	}
+
+	.candidate-chooser {
+		text-align: center;
+
+		.button {
+			border-radius: 100px;
+			background-color: $white;
+			border: 1px solid #ccc;
+		}
+
+		.dislike-button {
+			@extend .button;
+
+			color: green;
+			font-size: 40px;
+		}
+
+		.like-button {
+			@extend .button;
+
+			color: red;
+			font-size: 40px;
+		}
+	}
+
+	.footer {
+		position: absolute;
+	    bottom: 0;
+	    width: 100%;
+	    height: 60px;
+	    background-color: $white;
+		border-top: 1px solid #e0e0e0;
+		padding: 10px;
+		text-align: center;
+		vertical-align: middle;
+		display: table;
+
+		span {
+			display: table-cell;
+			vertical-align: middle;
+		}
+	}
+}
