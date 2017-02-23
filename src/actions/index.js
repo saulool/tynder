@@ -1,31 +1,57 @@
+import axios from 'axios';
+
 const ACTION_TYPES = {
-	LIKE_PERSON: 'LIKE_PERSON',
-	GET_CANDIDATES: 'GET_CANDIDATES'
+	LIKE_CANDIDATE: 'LIKE_CANDIDATE',
+	DISLIKE_CANDIDATE: 'DISLIKE_CANDIDATE',
+	GET_CANDIDATES: 'GET_CANDIDATES',
+	GET_CANDIDATES_SUCCESS: 'GET_CANDIDATES_SUCCESS',
+	GET_CANDIDATES_FAIL: 'GET_CANDIDATES_FAIL'
 };
 
 export function getCandidates() {
-	return {
-		type: ACTION_TYPES.GET_CANDIDATES,
-		payload: candidates
+	return dispatch => {
+		dispatch({ type: ACTION_TYPES.GET_CANDIDATES })
+
+		return fetchCandidates().then(
+			response => {
+				dispatch({
+					type: ACTION_TYPES.GET_CANDIDATES_SUCCESS,
+					payload: response
+				})
+			},
+			error => {
+				console.log(error);
+			}
+		)
 	}
 }
 
-export function likePerson(person) {
+async function fetchCandidates() {
+	let candidatesRequest = await axios.get('https://randomuser.me/api/?results=10');
+	
+	return candidatesRequest.data.results.map( (candidate) => {
+		return {
+			id: candidate.login.username,
+			name: candidate.name.title + candidate.name.first + candidate.name.last,
+			dob: candidate.dob,
+			picture: candidate.picture.large,
+			phone: candidate.phone,
+			cell: candidate.cell,
+			nationality: candidate.nat
+		}
+	});
+}
+
+export function likeCandidate(candidate) {
 	return {
-		type: ACTION_TYPES.LIKE_PERSON,
-		payload: person
+		type: ACTION_TYPES.LIKE_CANDIDATE,
+		payload: candidate
 	}
 }
 
-const candidates = [
-	{
-		name: 'Teste',
-		age: 18,
-		id: 1
-	},
-	{
-		name: 'Teste2',
-		age: 19,
-		id: 2
+export function dislikeCandidate(candidate) {
+	return {
+		type: ACTION_TYPES.DISLIKE_CANDIDATE,
+		payload: candidate
 	}
-]
+}

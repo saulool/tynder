@@ -53,6 +53,9 @@ module.exports = {
       })
   ],
 	devServer: {
-		contentBase: "./dist"
+    host: 'localhost',
+    port: 3005,
+    hot: true,
+    historyApiFallback: true
 	},
 };

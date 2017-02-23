@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { getCandidates } from '../actions/index';
+import { getCandidates, likeCandidate, dislikeCandidate } from '../actions/index';
 import { connect } from 'react-redux';
 
 import Candidate from './candidate'
@@ -14,35 +14,35 @@ class CandidateChooser extends Component{
 	renderCandidate() {
 		return (
 			<div className="candidate-chooser">
-				<img src="http://www.beautyandtips.com/wp-content/uploads/2015/03/TIPS-ON-HOW-TO-SURVIVE-A-BREAKUP-AND-FEEL-LIKE-A-BETTER-PERSON-150x150.jpg?x94091" />
 				<Candidate candidate={this.props.currentCandidate} />
-				<button className="like-button"><i className="glyphicon glyphicon-remove"></i></button>
-				<button className="dislike-button"><i className="glyphicon glyphicon-heart"></i></button>
+				<button className="dislike-button" onClick={this.props.dislikeCandidate}><i className="glyphicon glyphicon-remove"></i></button>
+				<button className="like-button" onClick={this.props.likeCandidate}><i className="glyphicon glyphicon-heart"></i></button>
 			</div>
 		);
 	}
 
 	render() {
-		if(this.props.currentCandidate){
-			console.log('sss');
-			return this.renderCandidate()
+		if(!this.props.currentCandidate && this.props.loadingCandidates){
+			return <div>Loading</div>;
+		}else if(!this.props.currentCandidate){
+			return <div>No more candidates</div>
 		}else{
-			return (
-				<div></div>
-			)
+			return this.renderCandidate();
 		}
 	}
 
 }
 
 function mapStateToProps(state){
+	console.log('state');
 	console.log(state);
 	return {
 		likeds: state.candidates.likeds,
 		dislikeds: state.candidates.dislikeds,
 		availableCandidates: state.candidates.availableCandidates,
-		currentCandidate: state.candidates.currentCandidate
+		currentCandidate: state.candidates.currentCandidate,
+		loadingCandidates: state.candidates.loadingCandidates
 	};
 }
 
-export default connect(mapStateToProps, { getCandidates })(CandidateChooser);
+export default connect(mapStateToProps, { getCandidates, likeCandidate, dislikeCandidate })(CandidateChooser);

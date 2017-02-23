@@ -14,11 +14,14 @@ import { Router, browserHistory } from 'react-router';
 import reducers from './reducers';
 import routes from './routes';
 
-const createStoreWithMiddleware = applyMiddleware()(createStore);
+import promiseMiddleware from 'redux-promise';
+import thunkMiddleware from 'redux-thunk';
+
+const createStoreWithMiddleware = applyMiddleware(thunkMiddleware)(createStore);
 const store = createStoreWithMiddleware(reducers);
 
 store.subscribe( () => {
-	//	console.log(store.getState());
+	console.log(store.getState());
 });
 
 ReactDOM.render(
