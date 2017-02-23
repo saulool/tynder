@@ -6,9 +6,12 @@ class Candidate extends Component{
 	render() {
 		return (
 			<div className="candidate">
-				<Link to={"detail/" + this.props.candidate.id}><img src={this.props.candidate.picture} /></Link>
-				<span>{this.props.candidate.name}</span>
-				<span>{this.props.candidate.dob}</span>
+				<div className="header">
+					<img src={this.props.candidate.picture} />
+				</div>
+				<Link to={"detail/" + this.props.candidate.id} className="picture"><img src={this.props.candidate.picture} /></Link>
+				<span className="name">{this.props.candidate.name}</span>
+				<span className="birthday">{this.props.candidate.dob}</span>
 			</div>
 		)
 	}
