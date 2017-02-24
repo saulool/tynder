@@ -3,6 +3,7 @@ import { getCandidates, likeCandidate, dislikeCandidate } from '../actions/index
 import { connect } from 'react-redux';
 
 import Candidate from './candidate'
+import Loader from './loader'
 
 class CandidateChooser extends Component{
 	
@@ -25,7 +26,7 @@ class CandidateChooser extends Component{
 
 	render() {
 		if(!this.props.currentCandidate && this.props.loadingCandidates){
-			return <div className="loader"><i className="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i> Loading</div>;
+			return <Loader />
 		}else if(!this.props.currentCandidate){
 			return <div>No more candidates</div>
 		}else{
