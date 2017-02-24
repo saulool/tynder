@@ -56,6 +56,15 @@ body {
 		}
 	}
 
+	.loader {
+		text-align: center;
+		font-size: 30px;
+
+		.fa {
+			font-size: 30px;
+		}
+	}
+
 	.candidate-chooser {
 		margin: 50px auto 0px;
     	width: 400px;

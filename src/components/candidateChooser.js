@@ -25,7 +25,7 @@ class CandidateChooser extends Component{
 
 	render() {
 		if(!this.props.currentCandidate && this.props.loadingCandidates){
-			return <div>Loading</div>;
+			return <div className="loader"><i className="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i> Loading</div>;
 		}else if(!this.props.currentCandidate){
 			return <div>No more candidates</div>
 		}else{
