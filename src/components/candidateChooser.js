@@ -15,8 +15,10 @@ class CandidateChooser extends Component{
 		return (
 			<div className="candidate-chooser">
 				<Candidate candidate={this.props.currentCandidate} />
-				<button className="dislike-button" onClick={this.props.dislikeCandidate}><i className="glyphicon glyphicon-remove"></i></button>
-				<button className="like-button" onClick={this.props.likeCandidate}><i className="glyphicon glyphicon-heart"></i></button>
+				<div className="actions">
+					<button className="dislike-button" onClick={this.props.dislikeCandidate}><i className="glyphicon glyphicon-remove"></i></button>
+					<button className="like-button" onClick={this.props.likeCandidate}><i className="glyphicon glyphicon-heart"></i></button>
+				</div>
 			</div>
 		);
 	}

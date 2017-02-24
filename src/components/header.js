@@ -5,9 +5,13 @@ const Header = (props) => {
 	return (
 		<div className="navbar">
 			<div className="container">
-				<Link to="/">TYNDER</Link>
-				<Link to="likeds">Likeds</Link>
-				<Link to="dislikeds">Dislikeds</Link>
+				<div className="logo">
+					<Link className="logo-link" to="/">TYNDER</Link>
+				</div>
+				<div className="menu">
+					<Link className="menu-item" to="likeds">Likeds</Link>
+					<Link className="menu-item" to="dislikeds">Dislikeds</Link>
+				</div>
 			</div>
 		</div>
 	);

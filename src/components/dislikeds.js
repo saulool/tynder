@@ -1,15 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import Candidate from './candidate';
+import CandidatesList from './candidatesList';
 
 class Dislikeds extends Component{
 	render() {
-		let candidates = this.props.dislikeds.map( (disliked, index) => {
-			return <Candidate candidate={disliked} key={index} />
-		});
-
-		return <div>{candidates}</div>
+		return <CandidatesList candidates={this.props.dislikeds} />
 	}
 }
 

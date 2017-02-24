@@ -27,17 +27,22 @@ export function getCandidates() {
 }
 
 async function fetchCandidates() {
-	let candidatesRequest = await axios.get('https://randomuser.me/api/?results=10');
+	let candidatesRequest = await axios.get('https://randomuser.me/api/?results=1000');
 	
 	return candidatesRequest.data.results.map( (candidate) => {
 		return {
 			id: candidate.login.username,
-			name: candidate.name.title + candidate.name.first + candidate.name.last,
-			dob: candidate.dob,
+			name: candidate.name.first + " " + candidate.name.last,
+			dob: candidate.dob.split(" ")[0],
 			picture: candidate.picture.large,
 			phone: candidate.phone,
 			cell: candidate.cell,
-			nationality: candidate.nat
+			nationality: candidate.nat,
+			location: {
+				street: candidate.location.street,
+				city: candidate.location.city,
+				state: candidate.location.state
+			}
 		}
 	});
 }
