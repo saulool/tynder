@@ -27,7 +27,7 @@ export function getCandidates() {
 }
 
 async function fetchCandidates() {
-	let candidatesRequest = await axios.get('https://randomuser.me/api/?results=1000');
+	let candidatesRequest = await axios.get('https://randomuser.me/api/?results=10');
 	
 	return candidatesRequest.data.results.map( (candidate) => {
 		return {

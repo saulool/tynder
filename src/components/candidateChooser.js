@@ -8,7 +8,7 @@ import Loader from './loader'
 class CandidateChooser extends Component{
 	
 	componentWillMount() {
-		if(!this.props.currentCandidate)
+		if(!this.props.currentCandidate && (this.props.dislikeds.length == 0 && this.props.likeds.length == 0))
 			this.props.getCandidates();
 	}
 
@@ -28,7 +28,7 @@ class CandidateChooser extends Component{
 		if(!this.props.currentCandidate && this.props.loadingCandidates){
 			return <Loader />
 		}else if(!this.props.currentCandidate){
-			return <div>No more candidates</div>
+			return <div className="no-candidates"><i className="fa fa-frown-o"></i> No more candidates</div>
 		}else{
 			return this.renderCandidate();
 		}
