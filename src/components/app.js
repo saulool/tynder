@@ -2,18 +2,29 @@ import React, {Component} from 'react';
 
 import Footer from './footer';
 import Header from './header';
-import axios from 'axios';
+import Authorization from './authorization';
+
+import { connect } from 'react-redux';
 
 class App extends Component {
 	render() {
+		const HeaderComponent = Authorization(Header);
+		const FooterComponent = Authorization(Footer);
+
 		return (
 			<div className="app">
-				<Header />
+				<HeaderComponent />
 				{this.props.children}
-				<Footer />
+				<FooterComponent />
 			</div>
 		);
 	}
 }
 
-export default App;
+function mapStateToProps(state){
+	return {
+		state
+	};
+}
+
+export default connect(mapStateToProps)(App);

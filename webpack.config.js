@@ -11,7 +11,7 @@ module.exports = {
   },
   output: {
   	path: path.resolve(__dirname, 'dist'),
-    filename: '[name].[chunkhash].js'
+    filename: '[name].[hash].js'
   },
   module: {
     loaders: [
@@ -47,15 +47,16 @@ module.exports = {
     	names: ['vendor', 'manifest']
     }),
   	new webpack.ProvidePlugin({   
-          jQuery: 'jquery',
-          $: 'jquery',
-          jquery: 'jquery'
-      })
+        jQuery: 'jquery',
+        $: 'jquery',
+        jquery: 'jquery'
+    }),
+    new webpack.HotModuleReplacementPlugin()
   ],
 	devServer: {
     host: 'localhost',
     port: 3005,
-    hot: true,
+    contentBase: './',
     historyApiFallback: true
 	},
 };
