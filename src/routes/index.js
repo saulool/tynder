@@ -1,13 +1,17 @@
 import React from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route, IndexRoute } from 'react-router';
 
-import Authorization from '../components/authorization';
-import Login from '../Login/';
-import Home from '../Home/';
+import App from '../components/app';
+import CandidateChooser from '../components/candidateChooser';
+import Likeds from '../components/likeds';
+import Dislikeds from '../components/dislikeds';
+import CandidateDetail from '../components/candidateDetail';
 
 export default (
-	<Switch>
-		<Route exactly path="/login" component={Login} />
-		<Route exactly path="/" component={Authorization(Home, true)} />
-	</Switch>
+	<Route path="/" component={App}>
+		<IndexRoute component={CandidateChooser} />
+		<Route path="/likeds" component={Likeds} />
+		<Route path="/dislikeds" component={Dislikeds} />
+		<Route path="/detail/:id" component={CandidateDetail} />
+	</Route>
 )

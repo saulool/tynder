@@ -7,21 +7,14 @@ import 'bootstrap/dist/js/bootstrap.min.js';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './components/app';
-import Header from './components/header';
-import Footer from './components/footer';
-import Authorization from './components/authorization';
-import Login from './Login/';
-import Home from './Home/';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
-import { Router, Route, browserHistory, Switch } from 'react-router-dom';
-import history from './routes/history';
-
-const HeaderComponent = Authorization(Header);
+import { Router, browserHistory } from 'react-router';
 
 import reducers from './reducers';
 import routes from './routes';
 
+import promiseMiddleware from 'redux-promise';
 import thunkMiddleware from 'redux-thunk';
 
 const createStoreWithMiddleware = applyMiddleware(thunkMiddleware)(createStore);
@@ -33,13 +26,7 @@ store.subscribe( () => {
 
 ReactDOM.render(
 	<Provider store={store}>
-		<Router history={history}>
-			<div className="app">
-				<HeaderComponent />
-				{routes}
-				<Footer />
-			</div>
-		</Router>
+		<Router history={browserHistory} routes={routes} />
 	</Provider>,
 	document.getElementById('main')
 );
