@@ -4,7 +4,6 @@
   "description": "A Tinder-like application using React + Redux + React Router",
   "main": "webpack.config.js",
   "scripts": {
-    "start": "rimraf dist && webpack --config webpack.config.js",
     "server": "rimraf dist && webpack-dev-server"
   },
   "repository": {
