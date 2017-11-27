@@ -3,7 +3,7 @@ import React from 'react';
 const Footer = (props) => {
 	return (
 		<div className="footer">
-			<span>2017</span>
+			<span>TYNDER - 2017</span>
 		</div>
 	);
 }
